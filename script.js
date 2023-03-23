@@ -52,4 +52,26 @@ function knightMoves(start, end) {
   let queue = [];
   queue.push(getPaths(start));
   console.log(queue.length);
+  for (let j = 0; j < queue.length; j++) {
+    for (let i = 0; i < queue[j].length; i++) {
+      // Check if already visited
+      console.log("Board: ", board);
+      console.log("Queue: ", queue);
+      if (board[queue[j][i][0]][queue[j][i][1]] != "visited") {
+        // Set as visited
+        board[queue[j][i][0]][queue[j][i][1]] = "visited";
+
+        if (queue[j][i][0] == end[0] && queue[j][i][1] == end[1]) {
+          console.log("FOUND!!!!!!!!!!");
+          console.log("STEPS: ", j);
+          return;
+        }
+
+        // Add current node paths
+        queue.push(getPaths([queue[j][i][0], queue[j][i][1]]));
+        console.log("X: ", queue[j][i][0]);
+        console.log("Y: ", queue[j][i][1]);
+      }
+    }
+  }
 }
