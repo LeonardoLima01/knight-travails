@@ -42,3 +42,14 @@ function createBoard() {
   }
   return board;
 }
+
+function knightMoves(start, end) {
+  if (arguments.length != 2 || start.length != 2 || end.length != 2) {
+    console.log("Please type in 2 arrays of size 2.");
+    return;
+  }
+  let board = createBoard();
+  let queue = [];
+  queue.push(getPaths(start));
+  console.log(queue.length);
+}
