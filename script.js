@@ -1,4 +1,18 @@
-function getPaths(start,steps) {
+function createAllLinks(queue, index, steps) {
+  let arr = [];
+  for (i of queue[index]) {
+    let a = getPaths([i[0], i[1]], steps);
+    console.log(i);
+    // turn bigger array into 1 item
+    for (i of a) {
+      // push to array
+      arr.push(i);
+    }
+  }
+  return arr;
+}
+
+function getPaths(start, steps) {
   x = [
     start[0] + 2,
     start[0] + 2,
@@ -44,28 +58,26 @@ function createBoard() {
 }
 
 function knightMoves(start, end) {
-  if (arguments.length != 2 || start.length != 2 || end.length != 2) return "Please type in 2 arrays of size 2."
-    
+  if (arguments.length != 2 || start.length != 2 || end.length != 2)
+    return "Please type in 2 arrays of size 2.";
+
   let board = createBoard();
   let queue = [];
   let steps = 0;
-    
-  queue.push(getPaths(start,++steps));
-    
+
+  queue.push(getPaths(start, ++steps));
+
   for (let j = 0; j < queue.length; j++) {
-      
-        queue.push(createAllLinks(queue,j,++steps));
+    queue.push(createAllLinks(queue, j, ++steps));
     for (let i = 0; i < queue[j].length; i++) {
-        if (board[queue[j][i][0]][queue[j][i][1]] != 'visited'){
-            
-            // Check if current node is the target
-            if (queue[j][i][0] == end[0] && queue[j][i][1] == end[1])
-                return queue[j][i][2]
-            
-            // Mark board as visited
-            board[queue[j][i][0]][queue[j][i][1]] = 'visited'
-        }
+      if (board[queue[j][i][0]][queue[j][i][1]] != "visited") {
+        // Check if current node is the target
+        if (queue[j][i][0] == end[0] && queue[j][i][1] == end[1])
+          return queue[j][i][2];
+
+        // Mark board as visited
+        board[queue[j][i][0]][queue[j][i][1]] = "visited";
+      }
     }
   }
 }
-    
