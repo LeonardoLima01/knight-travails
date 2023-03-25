@@ -2,7 +2,6 @@ function createAllLinks(queue, index, steps) {
   let arr = [];
   for (i of queue[index]) {
     let a = getPaths([i[0], i[1]], steps);
-    console.log(i);
     // turn bigger array into 1 item
     for (i of a) {
       // push to array
