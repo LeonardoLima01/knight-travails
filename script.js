@@ -48,7 +48,6 @@ function createBoard() {
 
   for (let i = 0; i < 8; i++) {
     board[i] = [];
-
     for (let j = 0; j < 8; j++) {
       board[i][j] = "";
     }
@@ -68,15 +67,11 @@ function knightMoves(start, end) {
 
   for (let j = 0; j < queue.length; j++) {
     queue.push(createAllLinks(queue, j, ++steps));
-
-    console.log("Q: ", queue);
-
     for (let i = 0; i < queue[j].length; i++) {
       if (board[queue[j][i][0]][queue[j][i][1]] != "visited") {
         // Check if current node is the target
         if (queue[j][i][0] == end[0] && queue[j][i][1] == end[1])
           return queue[j][i][2];
-
         // Mark board as visited
         board[queue[j][i][0]][queue[j][i][1]] = "visited";
       }
